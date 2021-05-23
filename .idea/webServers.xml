@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="76f7e192-012c-4a8a-ba29-0df5a4499610" name="learn_server" url="http://15.165.34.103">
+        <fileTransfer rootFolder="/odoo/custom/addons" accessType="SFTP" host="54.180.125.172" port="22" sshConfigId="f33557aa-f971-4e08-a99c-d5d08b718c82" sshConfig="ubuntu@54.180.125.172:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

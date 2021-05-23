@@ -9,10 +9,16 @@ class BaseArchive(models.AbstractModel):
     _description = 'Abstract Archive'
 
     active = fields.Boolean(default=True)
+    test = fields.Boolean(default=True)
+
 
     def do_archive(self):
         for record in self:
             record.active = not record.active
+
+    def do_test(self):
+        for record in self:
+            record.test = not record.test
 
 
 class LibraryBook(models.Model):

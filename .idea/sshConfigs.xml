@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="54.180.125.172" id="f33557aa-f971-4e08-a99c-d5d08b718c82" keyPath="C:\Users\shin\Desktop\keypair_linkup_cloud.pem" port="22" nameFormat="DESCRIPTIVE" username="ubuntu" />
+    </configs>
+  </component>
+</project>
