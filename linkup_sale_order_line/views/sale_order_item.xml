@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+
+    <!-- Sale Order Line Item 메뉴 구현 부분 -->
+
+
+
+    <record id='sale_order_line_action' model='ir.actions.act_window'>
+        <field name="name">Sale Order Line</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="sale_order_line_tree" model="ir.ui.view">
+        <field name="name">Sale Order Line</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="price_subtotal" position="before">
+                <field name="tax_id" widget="many2many_tags"/>
+            </field>
+            <field name="name" position="before">
+                <field name="product_id"/>
+            </field>
+            <field name="tax_id" position="before">
+                <field name="price_unit"/>
+            </field>
+               <field name="price_unit" position="before">
+                <field name="product_uom"/>
+            </field>
+            <field name="qty_delivered" position="replace">
+                <field name="qty_delivered" optional="hide"/>
+            </field>
+            <field name="qty_invoiced" position="replace">
+                <field name="qty_invoiced" optional="hide"/>
+            </field>
+            <field name="qty_to_invoice" position="replace">
+                <field name="qty_to_invoice" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
+
+
+    <!-- Sale Other Info Reporting 구현 부분 -->
+
+
+    <record id="sale_order_line_tree" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+        <xpath expr="//group[@name='sale_reporting']" position="replace">
+            <group string="Reporting" name="sale_reporting" >
+                <group name="technical" colspan="2" class="mb-0">
+                    <field name="origin"/>
+                </group>
+                <group name="utm_link" colspan="2" class="mt-0">
+                <field name="campaign_id"/>
+                <field name="medium_id"/>
+                <field name="source_id"/>
+                </group>
+            </group>
+        </xpath>
+        </field>
+    </record>
+
+    <record id="sale_view_inherit123" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_crm.sale_view_inherit123"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@  name='opportunity_id']" position="replace">
+                <field name="opportunity_id" help="Log in the chatter from which opportunity the order originates"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+    <!-- Customer Code 구현 부분 -->
+
+    <record id="res_partner_customer_code" model="ir.ui.view">
+        <field name="name">res.partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="before">
+<!--            <xpath expr="//field[@name='street']" position="before">-->
+                <field name="default_code" placeholder="Default code..."/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="sale_order_inherit" model="ir.ui.view">
+        <field name="name">Sale Order Inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='partner_id']" position="replace">
+               <field name="partner_id" />
+          </xpath>
+        </field>
+    </record>
+
+
+
+<!--    <record id="action_purchase_Merge" model="ir.actions.server">-->
+<!--        <field name="name">Merge</field>-->
+<!--        <field name="model_id" ref="purchase.model_purchase_order"/>-->
+<!--        <field name="binding_model_id" ref="purchase.model_purchase_order"/>-->
+<!--        <field name='groups_id' eval="[(4, ref('account.group_account_invoice'))]"/>-->
+<!--        <field name="state">code</field>-->
+<!--        <field name="code">-->
+<!--            if records:-->
+<!--                action = records.merge_orders()-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+
+</odoo>
+
